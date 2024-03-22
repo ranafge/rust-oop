@@ -42,3 +42,46 @@ impl AveragedCollection {
     }
 
 }
+
+
+pub trait Draw {
+    fn draw(&self);
+}
+/*
+    dyn : 
+
+    In computer science, dynamic dispatch is the process of selecting which implementation of a polymorphic operation (method or function) to call at run time.
+     It is commonly employed in, and considered a prime characteristic of, object-oriented programming (OOP) languages and systems.[1]
+
+*/
+pub struct Screen <T>{
+    // Box not only value assign to heap memory with ownership  but also get fix know size.
+
+    pub components: Vec<T>
+    // pub components  : Vec<Box<dyn Draw>>
+}
+
+// impl Screen {
+//     pub fn run(&self) {
+//         for component in &self.components {
+//             component.draw()
+//         }
+//     }
+// }
+
+// Generic type
+
+impl <T> Screen <T>
+    where
+        T: Draw
+{
+    pub fn run(&self) {
+        for component in &self.components {
+            component.draw()
+        }
+    }
+    
+}
+
+
+// Implementing the trait
