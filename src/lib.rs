@@ -54,34 +54,59 @@ pub trait Draw {
      It is commonly employed in, and considered a prime characteristic of, object-oriented programming (OOP) languages and systems.[1]
 
 */
-pub struct Screen <T>{
+pub struct Screen {
     // Box not only value assign to heap memory with ownership  but also get fix know size.
 
-    pub components: Vec<T>
+    pub components: Vec<Box<dyn Draw>>
     // pub components  : Vec<Box<dyn Draw>>
 }
 
-// impl Screen {
-//     pub fn run(&self) {
-//         for component in &self.components {
-//             component.draw()
-//         }
-//     }
-// }
-
-// Generic type
-
-impl <T> Screen <T>
-    where
-        T: Draw
-{
+impl Screen {
     pub fn run(&self) {
         for component in &self.components {
             component.draw()
         }
     }
-    
 }
+
+// Generic type
+
+// impl <T> Screen <T>
+//     where
+//         T: Draw
+// {
+//     pub fn run(&self) {
+//         for component in &self.components {
+//             component.draw()
+//         }
+//     }
+    
+// }
 
 
 // Implementing the trait
+
+pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String
+}
+
+impl Draw for Button {
+    fn draw(&self) {
+        println!("{} {} ", self.width, self.height)
+    }
+}
+
+pub struct SelectBox {
+    pub width: u32,
+    pub height: u32,
+    pub options: Vec<String>
+}
+
+
+impl Draw for SelectBox {
+    fn draw(&self) {
+        println!("{} {}", self.width, self.height)
+    }
+}

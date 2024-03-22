@@ -1,3 +1,5 @@
+use oop::{Button, Screen};
+
 fn main() {
     use oop::AveragedCollection;
 
@@ -8,6 +10,35 @@ fn main() {
     collection.average();
     collection.average();
 
+    use oop::Draw;
+    use oop::Button;
+    use oop::SelectBox;
+ 
+    let screen = Screen {
+        components: vec![
+            Box::new(Button {
+                width: 100,
+                height: 100,
+                label: String::from("Button")
+            }),
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from("Yes"),
+                    String::from("Maybe"),
+                    String::from("No"),
+                ],
+            })
+            
+        ],
+        
+    };
+    println!("{:?}",screen.run());
+    println!("Finished main.")
 
+        
+
+    
 }
 //
