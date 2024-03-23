@@ -57,3 +57,25 @@ impl <F> Clousre<F>
 fn do_it (data: &(u8, u16)) -> &u8 {
     &data.0
 }
+
+// we can rewirte this code as 
+
+struct Clousre2<F> {
+    data: (u8, u16),
+    func: F
+}
+
+impl <F> Clousre2<F> 
+    where F: Fn(&(u8, u16)) -> u8
+
+    {
+        fn call(&self) -> u8 {
+            (self.func) (&self.data)
+        }
+    }
+    
+    
+
+fn do_it2(data: &(u8, u64)) -> u8 {
+    data.0
+}
