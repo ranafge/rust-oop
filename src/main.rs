@@ -1,4 +1,4 @@
-use oop::{Button, Screen};
+use oop::{Button, Post, Screen};
 
 fn main() {
     use oop::AveragedCollection;
@@ -35,7 +35,11 @@ fn main() {
         
     };
     println!("{:?}",screen.run());
-    println!("Finished main.")
+    println!("Finished main.");
+
+    let mut post = Post::new();
+    post.add_text("I at a salad for lunch today");
+
 
         
 

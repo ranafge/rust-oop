@@ -122,7 +122,7 @@ pub struct Post {
 }
 
 impl Post {
-    pub fn new(&self)  -> Post{
+    pub fn new()  -> Post{
         Post {
             state: Some(Box::new(Draft {})),
             content: String::new()
@@ -154,6 +154,9 @@ impl Post {
 trait State {
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
+    fn content<'a> (&self, post: &'a Post) -> &'a str {
+        ""
+    }
 }
 
 struct Draft {}
