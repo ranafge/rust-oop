@@ -19,6 +19,12 @@ fn main() {
         data: (1,2), fun: do_it
     };
     println!("{}", col.call());
+
+    let ls = vec![1,2,3];
+
+    let list_of_string: Vec<String> = ls.iter().map(
+        |i| i.to_string()
+    ).collect();
     
 }
 
@@ -62,6 +68,7 @@ fn do_it (data: &(u8, u16)) -> &u8 {
 
 struct Clousre2<F> {
     data: (u8, u16),
+    // Fn type is call function pointer.
     func: F
 }
 
@@ -79,3 +86,34 @@ impl <F> Clousre2<F>
 fn do_it2(data: &(u8, u64)) -> u8 {
     data.0
 }
+
+// function pointer
+
+fn add_one(x: i32) -> i32 {
+    x + 1
+}
+
+fn add_two(f: fn(i32) -> i32, arg: i32) -> i32 {
+    f(arg) + f(arg)
+}
+
+fn add_three(f: fn(i32) -> i32, arg: i32) -> i32 {
+    f(arg)  + f(arg) + f(arg)
+}
+
+// function pointer implement the all of the closure traits (Fn, FnMut, FnOnce)
+
+
+// fn main() {
+//     add_two(add_one, 3);
+// }
+
+
+// im map we can use cluser inline or named functino pointer
+
+
+
+fn returns_closure() -> Box<dyn Fn(i32) -> i32 >{
+    Box::new(|x| x + 1)
+}
+   
