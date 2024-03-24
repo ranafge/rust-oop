@@ -1,4 +1,4 @@
-use std::process::Output;
+use std::{fmt::{Debug, Display}, process::Output};
 
 pub trait Ord: Eq + PartialOrd {
     fn cmp(self, other: Self) -> Ordering;
@@ -117,3 +117,41 @@ fn returns_closure() -> Box<dyn Fn(i32) -> i32 >{
     Box::new(|x| x + 1)
 }
    
+
+
+// Higher order trait bound
+
+trait Printable {
+    fn print(&self);
+}
+// A function that takes any type that implement the Printable
+// trait and prints
+fn print_it<T: Printable> (item: T) {
+    item.print();
+}
+
+
+// Another trait that requires types implementing it to 
+// also implemnt Printable
+
+trait  DebugPrintable: Printable {
+    fn debug_print(&self);
+}
+
+impl Printable for i32 {
+    fn print(&self) {
+        println!("Printing i32: {}", self)
+    }
+}
+
+impl DebugPrintable for i32 {
+    fn debug_print(&self) {
+        println!("Debug printing i32: {}", self)
+    }
+}
+
+// here DisplayAndDebut is call higher order trait its take as parameter Display and Debug also 
+// call trait bound
+trait DisplayAndDebut: Display + Debug {
+    fn display_and_debug(&self);
+}
