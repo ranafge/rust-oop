@@ -154,4 +154,4 @@ impl DebugPrintable for i32 {
 // call trait bound
 trait DisplayAndDebut: Display + Debug {
     fn display_and_debug(&self);
-}
+}dsfsddsdsdssd
